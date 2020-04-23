@@ -7,3 +7,4 @@ RUN apk update && \
     json-server
 
 EXPOSE 8080
+EXPOSE 3000
