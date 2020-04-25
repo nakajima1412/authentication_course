@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <h1>Welcome to the App!</h1>
-    <div>
+    <div v-if="!this.$store.state.user">
       To use this app you'll need to
       <router-link to="/login">
         Login
