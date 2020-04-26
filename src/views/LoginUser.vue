@@ -14,6 +14,7 @@
       <button type="submit" name="button">
         Login
       </button>
+      <p>{{ error }}</p>
       <router-link to="/register">
         Don't have an account? Register
       </router-link>
@@ -26,17 +27,23 @@ export default {
   data () {
     return {
       email: '',
-      password: ''
+      password: '',
+      error: null
     }
   },
   methods: {
     login () {
-      this.$store.dispatch('login', {
-        email: this.email,
-        password: this.password
-      }).then(() => {
-        this.$router.push({ name: 'dashboard' })
-      })
+      this.$store
+        .dispatch('login', {
+          email: this.email,
+          password: this.password
+        })
+        .then(() => {
+          this.$router.push({ name: 'dashboard' })
+        })
+        .catch(err => {
+          this.error = err.response.data.error
+        })
     }
   }
 }
